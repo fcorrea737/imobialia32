@@ -128,7 +128,7 @@
   "pnpm": {
     "overrides": {
       "@intlify/unplugin-vue-i18n": "2.0.0",
-      "@intlify/shared": "10.0.5"
+      "@intlify/shared": "10.0.8"
     }
   }
 }
