@@ -17,10 +17,10 @@ export const getComputedNavLinkToProp = computed(() => (link: NavLink) => {
     rel: link.rel,
   }
 
-  // If route is string => it assumes string is route name => Create route object from route name
-  // If route is not string => It assumes it's route object => returns passed route object
+  // If route is string => treat as path directly
+  // If route is object => use as route object
   if (link.to)
-    props.to = typeof link.to === 'string' ? { name: link.to } : link.to
+    props.to = link.to  // Use the value directly (string path or route object)
   else props.href = link.href
 
   return props
@@ -36,10 +36,20 @@ export const resolveNavLinkRouteName = (link: NavLink, router: Router) => {
   if (!link.to)
     return null
 
-  if (typeof link.to === 'string')
-    return link.to
-
-  return router.resolve(link.to).name
+  try {
+    if (typeof link.to === 'string') {
+      // For string paths, resolve to get the route name
+      const resolved = router.resolve(link.to)
+      return resolved.name || resolved.path
+    }
+    
+    // For route objects
+    const resolved = router.resolve(link.to)
+    return resolved.name || resolved.path
+  } catch (error) {
+    console.warn('Failed to resolve route:', link.to, error)
+    return null
+  }
 }
 
 /**
@@ -56,8 +66,8 @@ export const isNavLinkActive = (link: NavLink, router: Router) => {
   if (!resolveRoutedName)
     return false
 
-  return matchedRoutes.some(route => {
-    return route.name === resolveRoutedName || route.meta.navActiveLink === resolveRoutedName
+  return matchedRoutes.some((route: any) => {
+    return route.name === resolveRoutedName || route.meta?.navActiveLink === resolveRoutedName
   })
 }
 
