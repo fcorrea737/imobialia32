@@ -1,0 +1,14 @@
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2020",
+    "lib": ["es2020", "dom"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  }
+}
