@@ -96,9 +96,9 @@ const target = join(__dirname, 'icons.css')
 
 ;(async function () {
   // Importar JSONs de ícones de forma dinâmica para ESM
-  const tablerIconsPath = new URL('../../node_modules/@iconify-json/tabler/icons.json', import.meta.url)
-  const mdiIconsPath = new URL('../../node_modules/@iconify-json/mdi/icons.json', import.meta.url)
-  const faIconsPath = new URL('../../node_modules/@iconify-json/fa/icons.json', import.meta.url)
+  const tablerIconsPath = new URL('../../../node_modules/@iconify-json/tabler/icons.json', import.meta.url)
+  const mdiIconsPath = new URL('../../../node_modules/@iconify-json/mdi/icons.json', import.meta.url)
+  const faIconsPath = new URL('../../../node_modules/@iconify-json/fa/icons.json', import.meta.url)
 
   sources.json = [
     tablerIconsPath.pathname,
@@ -141,7 +141,7 @@ const target = join(__dirname, 'icons.css')
 
     for (const prefix in organizedList) {
       // ESM: resolver caminho do JSON do pacote @iconify-json
-      const filename = new URL(`../../node_modules/@iconify-json/${prefix}/icons.json`, import.meta.url).pathname
+      const filename = new URL(`../../../node_modules/@iconify-json/${prefix}/icons.json`, import.meta.url).pathname
       sourcesJSON.push({
         filename,
         icons: organizedList[prefix],
