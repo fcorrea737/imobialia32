@@ -126,6 +126,6 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
 
-  modules: ['@vueuse/nuxt', '@nuxtjs/i18n', '@nuxtjs/device', '@pinia/nuxt'],
+  modules: ['@vueuse/nuxt', '@nuxtjs/device', '@pinia/nuxt'],
   compatibilityDate: '2025-10-04',
 })
